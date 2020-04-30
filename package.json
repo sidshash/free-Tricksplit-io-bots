@@ -1,0 +1,27 @@
+{
+  "name": "cellz-bots-official",
+  "version": "1.0.0",
+  "description": "cellz io working bots 2020",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wonder",
+    "work",
+    "by",
+    "me"
+  ],
+  "author": "s1dsh4sh",
+  "license": "ISC",
+  "dependencies": {
+    "bufferutil": "^4.0.1",
+    "cheerio": "^1.0.0-rc.3",
+    "http-proxy-agent": "^4.0.1",
+    "https-proxy-agent": "^5.0.0",
+    "request": "^2.88.2",
+    "url": "^0.11.0",
+    "utf-8-validate": "^5.0.2",
+    "ws": "^7.2.3"
+  }
+}
