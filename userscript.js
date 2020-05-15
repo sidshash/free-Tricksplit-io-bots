@@ -6,6 +6,8 @@
 // @author       You
 // @match        *://tricksplit.io/*
 // @match        *://popsplit.me/*
+// @match        *://popsplit.us/*
+// @match        *://fanix.io/*
 // @grant        none
 // ==/UserScript==
 let btn = document.createElement('button');
@@ -37,8 +39,6 @@ WebSocket.prototype.send = function (data) {
         let dv = new DataView(data.buffer);
 
         if (dv.getUint8(0) == 0x10 && window.bot) {
-            // window.bot.x = dv.getUint32(1, true);
-            // window.bot.y = dv.getUint32(9, true);
             window.bot.packet = dv;
         }
     };
@@ -94,5 +94,6 @@ window.addEventListener('keydown', e => {
             bot.feed();
     }
 })
+
 
 

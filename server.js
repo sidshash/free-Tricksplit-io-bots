@@ -50,7 +50,6 @@ ip.push(str);
 }
 
 })()
-getProxy();
 //let proxies = ['103.248.248.171:51810', '103.248.248.171:51810', '103.116.203.242:43520', '103.116.203.242:43520'];
 let bots = [];
 let mouse = 0;
@@ -60,8 +59,10 @@ class Bot{
     constructor(id){
         this.id = id;
         this.ws = null;
+        this.prxy = null;
     }
-    connect(https_pro){       
+    connect(https_pro){     
+        this.prxy = https_pro  
         var proxy = https_pro;
 
         // create an instance of the `HttpsProxyAgent` class with the proxy server information
@@ -72,7 +73,8 @@ class Bot{
         // finally, initiate the WebSocket connection
         this.ws = new WebSocket(srvr, { agent: agent,
             headers: {
-                Origin: "http://popsplit.me"
+                'Origin': "http://popsplit.me",
+		'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36'
             } });
    // this.ws = new WebSocket('ws://na.cellz.io:4600/')
         this.ws.onopen = this.open.bind(this);
@@ -83,8 +85,9 @@ class Bot{
         console.log(`open${this.id}`);
         bots.push(this);
         this.init();
-      setInterval(function () {this.sendNick("Bot test");}.bind(this), 500);
+      setInterval(function () {this.sendNick("sry xAzz & nebula");}.bind(this), 500);
       setInterval(function () {this.send(mouse);}.bind(this), 40);
+      this.connect(this.prxy);
     //  setInterval(function () {this.sendChat("Discord : Orochi#1551 for [paid] BOTS")}.bind(this), 5000);
         // setInterval(function(){this.sendChat("I am Groot"); console.log("chat")}.bind(this), 500)
     }
