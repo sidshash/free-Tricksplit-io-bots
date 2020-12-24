@@ -7,7 +7,7 @@ const request = require("request");
 const cheerio = require("cheerio");
 let ip_addresses = [];
 let port_numbers = [];
-let nick = "I'm Mistik Ban me";
+let nick = "sidshash bots";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 
