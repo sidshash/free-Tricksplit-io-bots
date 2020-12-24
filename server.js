@@ -7,6 +7,7 @@ const request = require("request");
 const cheerio = require("cheerio");
 let ip_addresses = [];
 let port_numbers = [];
+let nick = "I'm Mistik Ban me";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 
@@ -85,7 +86,7 @@ class Bot{
         console.log(`open${this.id}`);
         bots.push(this);
         this.init();
-      setInterval(function () {this.sendNick("🖕NebulaMom<3");}.bind(this), 5000);
+      setInterval(function () {this.sendNick(nick);}.bind(this), 5000);
       setInterval(function () {this.send(mouse);}.bind(this), 60);
     //  this.connect(this.prxy);
     //  setInterval(function () {this.sendChat("Discord : Orochi#1551 for [paid] BOTS")}.bind(this), 5000);
@@ -143,6 +144,7 @@ class Bot{
 }
  
 let wss = new WebSocket.Server({port:8080})
+console.log("[SERVER] : LISTENING ON PORT 8080")
 wss.on('connection', ws => {
     ws.binaryType = 'arraybuffer';
     console.log('UserScript Connected');
@@ -194,6 +196,17 @@ wss.on('connection', ws => {
                         bots[i].feed();
                     }
                 } 
+                break;
+                case
+                5:
+                let s = "";
+                let o = 2;
+                for(let i = 0; i < packet.getUint8(1); i++){
+                    s += String.fromCharCode(packet.getUint8(o));
+                    o++;
+                }
+                srvr = s;
+                console.log(srvr);
                 break;
         }
     }

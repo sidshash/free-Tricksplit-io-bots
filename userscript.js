@@ -5,17 +5,17 @@
 // @description  fuck nebula
 // @author       sidshash
 // @match        *://tricksplit.io/*
-// @match        *://popsplit.me/*
-// @match        *://popsplit.us/*
-// @match        *://fanix.io/*
 // @grant        none
 // ==/UserScript==
+
+let srvr = ""
 
 WebSocket.prototype._send = WebSocket.prototype.send;
 WebSocket.prototype.send = function (data) {
     this._send(data);
     this.send = function (data) {
         this._send(data);
+        srvr = this.url;
         let dv = new DataView(data.buffer);
 
         if (dv.getUint8(0) == 0x10 && window.bot) {
@@ -23,18 +23,18 @@ WebSocket.prototype.send = function (data) {
         }
     };
 };
+
+
+
 window.bot = {
     packet: 0,
     start: () => {
-        $('#strtBtn').css("background-color", "#00FF00");
-        $('#strtBtn').html("Stop Bots");
         let dv = new DataView(new ArrayBuffer(1));
         dv.setUint8(0, 1);
         botWS.send(dv);
         setInterval(() => { botWS.send(bot.packet) }, 1);
     },
     stop: () => {
-        $('#strtBtn').css("background-color", "#FF0000");
         let dv = new DataView(new ArrayBuffer(1));
         dv.setUint8(0, 0);
         botWS.send(dv);
@@ -48,17 +48,27 @@ window.bot = {
         let dv = new DataView(new ArrayBuffer(1));
         dv.setUint8(0, 21);
         botWS.send(dv);
+    },
+    sendServer : () => {
+        let dv = new DataView(new ArrayBuffer(2 + srvr.length));
+        let offset = 2;
+        dv.setUint8(0, 5);
+        dv.setUint8(1, srvr.length);
+        for(let i = 0; i < srvr.length; i++){
+            dv.setUint8(offset, srvr.charCodeAt(i));
+            offset++
+        }
+        botWS.send(dv)
     }
 }
 function connect() {
     window.botWS = new WebSocket('ws://localhost:8080');
     botWS.onopen = () => {
-        $('#cnctBtn').css("background-color", "#00FF00");
         console.log('botserver open');
+        bot.sendServer();
 
     }
     botWS.onclose = () => {
-        $('#cnctBtn').css("background-color", "#FF0000");
         console.log('botserver close');
     }
 }
@@ -73,7 +83,7 @@ window.addEventListener('keydown', e => {
             'r':
             bot.feed();
             break;
-            case 
+            case
             'c':
             connect();
             break;

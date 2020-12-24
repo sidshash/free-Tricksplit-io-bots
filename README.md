@@ -9,4 +9,3 @@ now install tampermonkey
 and create a new script copy all code from userScript.js to tampermonkey script
 
 goto tricksplit.io
-click connect then click start to start the bots.
