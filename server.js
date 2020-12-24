@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const url = require('url');
 const HttpsProxyAgent = require('https-proxy-agent');
 let ip = [];
-let srvr = "wss://proxy.cellz.io/4600";
+let srvr = "wss://proxy.tricksplit.io/6003";
 const request = require("request");
 const cheerio = require("cheerio");
 let ip_addresses = [];
@@ -60,6 +60,9 @@ class Bot{
         this.id = id;
         this.ws = null;
         this.prxy = null;
+        this.headers = {
+            'origin' : 'http://popsplit.me'
+        }
     }
     connect(https_pro){     
         this.prxy = https_pro  
@@ -71,11 +74,8 @@ class Bot{
         var agent = new HttpsProxyAgent(options);
 
         // finally, initiate the WebSocket connection
-        this.ws = new WebSocket(srvr, { agent: agent,
-            headers: {
-                'Origin': "http://popsplit.me",
-		'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36'
-            } });
+        this.ws = new WebSocket(srvr, { agent: agent, headers : this.headers})
+              
    // this.ws = new WebSocket('ws://na.cellz.io:4600/')
         this.ws.onopen = this.open.bind(this);
         this.ws.onclose = this.close.bind(this);
@@ -85,9 +85,9 @@ class Bot{
         console.log(`open${this.id}`);
         bots.push(this);
         this.init();
-      setInterval(function () {this.sendNick("sry xAzz & nebula");}.bind(this), 500);
-      setInterval(function () {this.send(mouse);}.bind(this), 40);
-      this.connect(this.prxy);
+      setInterval(function () {this.sendNick("🖕NebulaMom<3");}.bind(this), 5000);
+      setInterval(function () {this.send(mouse);}.bind(this), 60);
+    //  this.connect(this.prxy);
     //  setInterval(function () {this.sendChat("Discord : Orochi#1551 for [paid] BOTS")}.bind(this), 5000);
         // setInterval(function(){this.sendChat("I am Groot"); console.log("chat")}.bind(this), 500)
     }
@@ -155,11 +155,10 @@ wss.on('connection', ws => {
             case
             1:
             if(bots.length < 1) {
-                for (var i = 0; i < 50; i++) {        
+                for (var i = 0; i < 30; i++) {        
                     
                         let bot = new Bot(i);
-                        bot.connect(`http://${ip[i]}`);  
-                                             
+                        bot.connect(`http://${ip[i]}`);                                              
                 }
             }
             break;
@@ -170,7 +169,7 @@ wss.on('connection', ws => {
                 for(let i = 0; i < bots.length; i++){
                     bots[i].ws.close();
                 }
-               
+                bots = [];
             }
                 break;
             case

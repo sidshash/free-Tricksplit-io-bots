@@ -2,35 +2,15 @@
 // @name         Cellz Bots
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  try to take over the world!
-// @author       You
+// @description  fuck nebula
+// @author       sidshash
 // @match        *://tricksplit.io/*
 // @match        *://popsplit.me/*
 // @match        *://popsplit.us/*
 // @match        *://fanix.io/*
 // @grant        none
 // ==/UserScript==
-let btn = document.createElement('button');
-btn.addEventListener('click', function () {
-    connect();
-});
-btn.id = "cnctBtn";
-btn.innerHTML = 'Connect';
-btn.style.backgroundColor = '#FF0000';
-$('.main')[0].appendChild(btn);
-let startBtn = document.createElement('button');
-startBtn.addEventListener('click', function () {
-    if (this.innerHTML == "Start Bots") {
-        bot.start();
-    }
-    else {
-        bot.stop();
-    }
-});
-startBtn.id = "strtBtn";
-startBtn.innerHTML = 'Start Bots';
-startBtn.style.backgroundColor = '#FF0000';
-$('.main')[0].appendChild(startBtn);
+
 WebSocket.prototype._send = WebSocket.prototype.send;
 WebSocket.prototype.send = function (data) {
     this._send(data);
@@ -92,6 +72,18 @@ window.addEventListener('keydown', e => {
         case
             'r':
             bot.feed();
+            break;
+            case 
+            'c':
+            connect();
+            break;
+            case
+            'p':
+            bot.start();
+            break;
+            case
+            's':
+            bot.stop();
     }
 })
 
