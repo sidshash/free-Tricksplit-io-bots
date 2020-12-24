@@ -9,3 +9,12 @@ now install tampermonkey
 and create a new script copy all code from userScript.js to tampermonkey script
 
 goto tricksplit.io
+
+Controls =>
+"c" : connect bots;
+"p" : start bots
+"s" : stop bots
+
+close the server by pressing ctrl + c on command prompt
+
+
