@@ -1,3 +1,4 @@
+# [!] Outdated !!!
 # free-Tricksplit-io-bots-
 ### How To run 
 Install NodeJS from https://nodejs.org/en/download/
